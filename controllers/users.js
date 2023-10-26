@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const moment = require('moment');
+const { connectDB, disconnectDB } = require('../database/db');
 require('dotenv').config();
 const secretToken = process.env.SECRET_TOKEN
 
@@ -12,6 +13,16 @@ const getUser = async (req, res) => {
     res.status(200).send(users);
   } catch (error) {
     res.status(206).json({ error: error.message });
+  }
+}
+
+const plantilla = async () => {
+  try {
+    await connectDB()
+    console.log('holaaaa');
+    await disconnectDB()
+  } catch (error) {
+    console.log(error);
   }
 }
 
