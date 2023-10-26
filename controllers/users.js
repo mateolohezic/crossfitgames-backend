@@ -103,12 +103,10 @@ const createUser = async (req, res) => {
     res.status(400).json({ error: 'Correo electrónico invalido.' });
     return;
   }
-  
   if (!passwordPattern.test(password)) {
     res.status(400).json({ error: 'Contraseña invalida.' });
     return;
   }
-  
   const emailInUse = await User.findOne({ email });
   if (emailInUse) {
     res.status(400).json({ error: 'Este correo electrónico se encuentra en uso.' });
